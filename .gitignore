@@ -45,6 +45,15 @@ Thumbs.db
 .impeccable/
 .muse/
 
+# ── Private docs / samples — keep locally, do not commit ──
+DESIGN.md
+PRODUCT.md
+Plan
+*.pdf
+
+# ── Vite cache ──
+frontend/.vite/
+
 # ── Misc ──
 *.tmp
 *.bak
