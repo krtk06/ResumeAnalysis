@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Analysis — Proof Sheet</title>
+  </head>
+  <body>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ra-theme');
+          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <!--
+      DIRECTION CONTRACT — Proof & Press (seed 8c322e1b)
+      THESIS: Every resume analysis is a print-shop proof sheet checked before
+      production; the category-default dashboard-of-cards is refused.
+      OWN-WORLD: Bone stock ground (#f5f2ea), achromatic ink field (#17140f),
+      proof-red (#c9341a) confined to rules, stamps and marks; Geist for
+      press legends, Geist Mono for measured data;
+      hairline rule grid, numbered lane rail, full-inversion active states.
+      STORY: The visitor hands over a document, watches it move through
+      numbered press stages, and receives a stamped verdict with marked-up
+      corrections it can act on.
+      FIRST VIEWPORT: A job-ticket masthead strip (FILE / FORMAT / TARGET ROLE
+      / DATE) above a document intake tray framed by crop marks; the primary
+      action "Run Analysis" sits as a full-width inverted ink block at the
+      foot of the ticket.
+      FORM: Print-shop proof & specification sheet — assigned candidate 4 of
+      7 grounded directions, seed key 8c322e1b.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with
+      the finish review, the verdict, DESIGN.md, and every shipping raster
+      carrying its provenance.
+    -->
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

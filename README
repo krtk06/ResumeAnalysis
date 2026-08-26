@@ -1,0 +1,134 @@
+# Resume Analyzer
+
+AI-powered NLP resume analysis application that matches resumes to target job roles and provides actionable improvement suggestions.
+
+## Features
+
+- **Resume Upload**: Drag-and-drop PDF or DOCX files
+- **Role Selection**: Choose from predefined roles or enter custom target role
+- **NLP Analysis**: Extracts skills, education, and experience years
+- **Match Scoring**: Scores resumes out of 10 based on semantic similarity and keyword matching
+- **Alternative Roles**: Suggests other applicable job roles
+- **Improvement Areas**: Provides actionable areas for resume enhancement
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React.js, Tailwind CSS |
+| Backend | Python FastAPI |
+| NLP | spaCy, sentence-transformers |
+| Environment | python-dotenv |
+
+## Design
+
+"Proof & Press" — a print-shop proof-sheet aesthetic. Bone stock ground, ink-black type (Archivo condensed caps + Spline Sans Mono data), and a single proof-red reserved for stamps, rules, and correction marks. See `DESIGN.md` for the full system.
+
+## Prerequisites
+
+- Python 3.12+
+- Node.js 18+
+- npm
+
+## Installation
+
+### Backend
+
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+## Running the Application
+
+### Start Backend
+
+```bash
+cd backend
+source venv/bin/activate
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+### Start Frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+The frontend will run at `http://localhost:5173`.
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/analyze` | Upload resume, get analysis |
+| GET | `/api/health` | Health check |
+| GET | `/api/roles` | List predefined roles |
+
+## Project Structure
+
+```
+ResumeAnalysis/
+├── backend/
+│   ├── app/
+│   │   ├── main.py           # FastAPI app
+│   │   ├── routes/analyze.py  # API endpoints
+│   │   ├── services/
+│   │   │   ├── resume_parser.py  # PDF/DOCX extraction
+│   │   │   ├── nlp_analyzer.py   # Entity extraction
+│   │   │   └── matcher.py        # Role matching
+│   │   └── models/schemas.py
+│   ├── requirements.txt
+│   └── .env
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── components/
+│   │   │   ├── UploadZone.jsx
+│   │   │   ├── RoleSelector.jsx
+│   │   │   ├── ProcessingState.jsx
+│   │   │   └── ResultsDashboard.jsx
+│   │   └── services/api.js
+│   ├── package.json
+│   └── tailwind.config.js
+└── Plan
+```
+
+## Usage
+
+1. Open the frontend in your browser
+2. Drag and drop a PDF or DOCX resume
+3. Select a target role from the dropdown or enter a custom role
+4. Click "Analyze Resume"
+5. View the results: score, alternative roles, and improvement suggestions
+
+## Environment Variables
+
+### Backend (.env)
+
+```
+FASTAPI_HOST=0.0.0.0
+FASTAPI_PORT=8000
+MODEL_NAME=all-MiniLM-L6-v2
+CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+```
+
+### Frontend (.env)
+
+```
+VITE_API_URL=http://localhost:8000
+```
+
+## License
+
+MIT

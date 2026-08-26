@@ -1,0 +1,50 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+.env
+!.env.example
+*.egg-info/
+pip-log.txt
+
+# ── Node / Frontend ──
+node_modules/
+dist/
+build/
+coverage/
+.env
+!.env.example
+*.log
+npm-debug.log*
+
+# Keep env examples
+!backend/.env.example
+!frontend/.env.example
+
+# ── OS / Editor ──
+.DS_Store
+Thumbs.db
+*.Zone.Identifier
+*:Zone.Identifier
+*.Zone.Identifier:*
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# ── Tooling artifacts (local-only) — AI agent folders, keep locally, do not commit ──
+.opencode/
+.aislop/
+.impeccable/
+.muse/
+
+# ── Misc ──
+*.tmp
+*.bak
