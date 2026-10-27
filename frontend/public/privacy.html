@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy — Resume Analysis</title>
+    <style>
+      :root {
+        --stock: #f5f2ea;
+        --stock-deep: #ede8db;
+        --ink: #17140f;
+        --ink-soft: #4a443a;
+        --ink-faint: #6e6656;
+        --rule: #c9c2b0;
+        --proof: #c9341a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--stock);
+        color: var(--ink);
+        font-family: Geist, system-ui, sans-serif;
+        line-height: 1.55;
+      }
+      main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+      a { color: var(--proof); }
+      h1 {
+        font-size: clamp(2rem, 6vw, 3rem);
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        margin: 0 0 0.75rem;
+      }
+      h2 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 0.4rem;
+        margin: 2.25rem 0 0.75rem;
+      }
+      .meta {
+        font-family: "Geist Mono", ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      .rule { border: 0; border-top: 3px solid var(--proof); margin: 1.5rem 0; }
+      ul { padding-left: 1.2rem; }
+      li { margin: 0.35rem 0; }
+      .back {
+        display: inline-block;
+        margin-bottom: 2rem;
+        font-family: "Geist Mono", ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">← Back to the proof sheet</a>
+      <p class="meta">Privacy · last updated 27 October 2026</p>
+      <h1>Your resume is not a dataset.</h1>
+      <hr class="rule" />
+
+      <p>
+        Resume Analysis processes a resume to score its fit for a role and to show
+        evidence for that score. The default local path runs on the server in memory.
+        No upload is written to disk, and no resume text is included in application logs.
+      </p>
+
+      <h2>What is processed</h2>
+      <ul>
+        <li>The uploaded PDF or DOCX, held in memory for the request only.</li>
+        <li>The target role and optional job description you provide.</li>
+        <li>Derived skills, education, experience, and scoring signals.</li>
+      </ul>
+
+      <h2>When AI review is enabled</h2>
+      <p>
+        AI review is off unless you explicitly tick the consent box. When enabled,
+        high-confidence PII is redacted first: email, phone, URLs, profile handles,
+        street addresses, and a conservative name heuristic. The redacted text is
+        then sent to OpenCode Go:
+      </p>
+      <ul>
+        <li><strong>Beam Free</strong> is the primary model. Its provider does not train on requests and retains them for 30 days for safety.</li>
+        <li><strong>GLM-5.3-Flash</strong> is the fallback. Its provider reports zero-day retention and does not train on requests.</li>
+        <li><strong>Iceman Contributor Free is not used</strong> because it trains on prompts and completions.</li>
+      </ul>
+      <p>
+        Redaction reduces risk but is not a guarantee. Do not upload a resume unless
+        you have the right to process it.
+      </p>
+
+      <h2>Retention</h2>
+      <p>
+        This application does not persist resumes, results, or history. In-memory
+        request state is discarded after the response. OpenCode Go's model retention
+        is described above and is governed by OpenCode's policies.
+      </p>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li>Leave AI review unchecked to use local scoring only.</li>
+        <li>Use a redacted or fictional resume for a demo.</li>
+        <li>Do not upload a resume if you are not authorised to process it.</li>
+      </ul>
+
+      <h2>DPDP Act and GDPR</h2>
+      <p>
+        This is a portfolio demo, not a hiring decision system. It follows data
+        minimisation and purpose limitation: process the minimum text needed for the
+        requested analysis, do not store it, and ask for consent before any external
+        transfer. If you deploy it for real candidates, add a lawful basis, a notice,
+        a retention policy, a deletion path, and a cross-border transfer review
+        appropriate to your jurisdiction. This page is not legal advice.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Report a privacy or security issue at
+        <a href="https://github.com/krtk06/ResumeAnalysis/issues">github.com/krtk06/ResumeAnalysis/issues</a>.
+      </p>
+    </main>
+  </body>
+</html>

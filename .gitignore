@@ -50,6 +50,20 @@ DESIGN.md
 PRODUCT.md
 Plan
 *.pdf
+*.docx
+
+# Only README.md is tracked as Markdown. Every other notes, plan, or design
+# file stays local.
+*.md
+!README.md
+
+# Demo assets that must ship with the frontend.
+!frontend/public/samples/sample-resume.pdf
+!frontend/public/samples/sample-resume.docx
+!deploy/oracle/.env.example
+
+# ── Model artifacts ──
+eval/models/
 
 # ── Vite cache ──
 frontend/.vite/

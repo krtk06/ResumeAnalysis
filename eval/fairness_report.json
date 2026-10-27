@@ -1,0 +1,22 @@
+{
+  "baseline": "matcher",
+  "note": "Counterfactual probe on synthetic names/schools; not a fairness audit.",
+  "groups": {
+    "name": {
+      "scores": {
+        "emily": 7.8,
+        "lakshmi": 7.8,
+        "jamal": 7.8
+      },
+      "max_delta": 0.0
+    },
+    "school": {
+      "scores": {
+        "state-school": 7.8,
+        "prestige-school": 7.8
+      },
+      "max_delta": 0.0
+    }
+  },
+  "max_delta_all": 0.0
+}

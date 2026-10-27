@@ -1,0 +1,1041 @@
+{
+  "generated_at": "2026-10-27T16:05:31.437107+00:00",
+  "dataset": "seed_pairs.jsonl",
+  "dataset_kind": "seed-smoke-test",
+  "note": "This is a small hand-labelled seed set for harness verification. It is not the final 300-1000 pair benchmark and must not be cited as one.",
+  "n_pairs": 18,
+  "baselines": {
+    "tfidf": {
+      "metrics": {
+        "n_pairs": 18,
+        "n_jds": 3,
+        "ndcg@10": 0.993,
+        "ndcg@10_ci": [
+          0.9915,
+          0.9949
+        ],
+        "mrr@10": 1.0,
+        "recall@10": 1.0,
+        "spearman": 0.8989,
+        "mae": 3.1243,
+        "ece": 0.3122,
+        "non_resume_recall": 1.0,
+        "per_jd": {
+          "jd-backend": {
+            "ndcg@10": 0.9927,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-backend",
+                "relevance": 3,
+                "prediction": 0.1905
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 2,
+                "prediction": 0.0463
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 1,
+                "prediction": 0.0244
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.0206
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.017
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 0.0076
+              }
+            ]
+          },
+          "jd-frontend": {
+            "ndcg@10": 0.9949,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-frontend",
+                "relevance": 3,
+                "prediction": 0.2301
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 0.0369
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 0.0213
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 0,
+                "prediction": 0.0045
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.0018
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.0
+              }
+            ]
+          },
+          "jd-ml": {
+            "ndcg@10": 0.9915,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-ml",
+                "relevance": 3,
+                "prediction": 0.1485
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 0.0341
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 0,
+                "prediction": 0.0075
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.0065
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 0,
+                "prediction": 0.0061
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "predictions": [
+        {
+          "pair_id": "r-backend__jd-backend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-backend",
+          "relevance": 3,
+          "prediction": 0.1905
+        },
+        {
+          "pair_id": "r-frontend__jd-backend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.0244
+        },
+        {
+          "pair_id": "r-ml__jd-backend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-backend",
+          "relevance": 2,
+          "prediction": 0.0463
+        },
+        {
+          "pair_id": "r-analyst__jd-backend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.017
+        },
+        {
+          "pair_id": "r-career__jd-backend",
+          "resume_id": "r-career",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.0076
+        },
+        {
+          "pair_id": "r-nonresume__jd-backend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-backend",
+          "relevance": 0,
+          "prediction": 0.0206
+        },
+        {
+          "pair_id": "r-backend__jd-frontend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.0213
+        },
+        {
+          "pair_id": "r-frontend__jd-frontend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-frontend",
+          "relevance": 3,
+          "prediction": 0.2301
+        },
+        {
+          "pair_id": "r-ml__jd-frontend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 0.0045
+        },
+        {
+          "pair_id": "r-analyst__jd-frontend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.0018
+        },
+        {
+          "pair_id": "r-career__jd-frontend",
+          "resume_id": "r-career",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.0369
+        },
+        {
+          "pair_id": "r-nonresume__jd-frontend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 0.0
+        },
+        {
+          "pair_id": "r-backend__jd-ml",
+          "resume_id": "r-backend",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 0.0341
+        },
+        {
+          "pair_id": "r-frontend__jd-ml",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.0061
+        },
+        {
+          "pair_id": "r-ml__jd-ml",
+          "resume_id": "r-ml",
+          "jd_id": "jd-ml",
+          "relevance": 3,
+          "prediction": 0.1485
+        },
+        {
+          "pair_id": "r-analyst__jd-ml",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 0.0065
+        },
+        {
+          "pair_id": "r-career__jd-ml",
+          "resume_id": "r-career",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.0075
+        },
+        {
+          "pair_id": "r-nonresume__jd-ml",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.0
+        }
+      ]
+    },
+    "hash": {
+      "metrics": {
+        "n_pairs": 18,
+        "n_jds": 3,
+        "ndcg@10": 0.8917,
+        "ndcg@10_ci": [
+          0.7277,
+          0.9927
+        ],
+        "mrr@10": 0.8333,
+        "recall@10": 1.0,
+        "spearman": 0.6553,
+        "mae": 3.0589,
+        "ece": 0.3031,
+        "non_resume_recall": 1.0,
+        "per_jd": {
+          "jd-backend": {
+            "ndcg@10": 0.9927,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-backend",
+                "relevance": 3,
+                "prediction": 0.3489
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 2,
+                "prediction": 0.155
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.1528
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.1183
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 1,
+                "prediction": 0.099
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 0.0873
+              }
+            ]
+          },
+          "jd-frontend": {
+            "ndcg@10": 0.9547,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-frontend",
+                "relevance": 3,
+                "prediction": 0.3223
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.105
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 0,
+                "prediction": 0.1009
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 0.0947
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 0.0946
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.0474
+              }
+            ]
+          },
+          "jd-ml": {
+            "ndcg@10": 0.7277,
+            "mrr@10": 0.5,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 0.1872
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 3,
+                "prediction": 0.1728
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.1481
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 0,
+                "prediction": 0.1354
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 0,
+                "prediction": 0.048
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.0313
+              }
+            ]
+          }
+        }
+      },
+      "predictions": [
+        {
+          "pair_id": "r-backend__jd-backend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-backend",
+          "relevance": 3,
+          "prediction": 0.3489
+        },
+        {
+          "pair_id": "r-frontend__jd-backend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.099
+        },
+        {
+          "pair_id": "r-ml__jd-backend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-backend",
+          "relevance": 2,
+          "prediction": 0.155
+        },
+        {
+          "pair_id": "r-analyst__jd-backend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.1528
+        },
+        {
+          "pair_id": "r-career__jd-backend",
+          "resume_id": "r-career",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.0873
+        },
+        {
+          "pair_id": "r-nonresume__jd-backend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-backend",
+          "relevance": 0,
+          "prediction": 0.1183
+        },
+        {
+          "pair_id": "r-backend__jd-frontend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.0946
+        },
+        {
+          "pair_id": "r-frontend__jd-frontend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-frontend",
+          "relevance": 3,
+          "prediction": 0.3223
+        },
+        {
+          "pair_id": "r-ml__jd-frontend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 0.1009
+        },
+        {
+          "pair_id": "r-analyst__jd-frontend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.0474
+        },
+        {
+          "pair_id": "r-career__jd-frontend",
+          "resume_id": "r-career",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.0947
+        },
+        {
+          "pair_id": "r-nonresume__jd-frontend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 0.105
+        },
+        {
+          "pair_id": "r-backend__jd-ml",
+          "resume_id": "r-backend",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 0.1872
+        },
+        {
+          "pair_id": "r-frontend__jd-ml",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.048
+        },
+        {
+          "pair_id": "r-ml__jd-ml",
+          "resume_id": "r-ml",
+          "jd_id": "jd-ml",
+          "relevance": 3,
+          "prediction": 0.1728
+        },
+        {
+          "pair_id": "r-analyst__jd-ml",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 0.1481
+        },
+        {
+          "pair_id": "r-career__jd-ml",
+          "resume_id": "r-career",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.1354
+        },
+        {
+          "pair_id": "r-nonresume__jd-ml",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.0313
+        }
+      ]
+    },
+    "minilm": {
+      "metrics": {
+        "n_pairs": 18,
+        "n_jds": 3,
+        "ndcg@10": 0.9783,
+        "ndcg@10_ci": [
+          0.9577,
+          0.9913
+        ],
+        "mrr@10": 1.0,
+        "recall@10": 1.0,
+        "spearman": 0.6223,
+        "mae": 2.9186,
+        "ece": 0.2811,
+        "non_resume_recall": 1.0,
+        "per_jd": {
+          "jd-backend": {
+            "ndcg@10": 0.9859,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-backend",
+                "relevance": 3,
+                "prediction": 0.584
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 2,
+                "prediction": 0.3849
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.3829
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 1,
+                "prediction": 0.3745
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 0.3735
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.3109
+              }
+            ]
+          },
+          "jd-frontend": {
+            "ndcg@10": 0.9913,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-frontend",
+                "relevance": 3,
+                "prediction": 0.641
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 0.4314
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 0.3034
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.2619
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 0,
+                "prediction": 0.2134
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.2005
+              }
+            ]
+          },
+          "jd-ml": {
+            "ndcg@10": 0.9577,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-ml",
+                "relevance": 3,
+                "prediction": 0.5305
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 0,
+                "prediction": 0.3249
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 0.3219
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 0.3099
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 0,
+                "prediction": 0.2567
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 0.1926
+              }
+            ]
+          }
+        }
+      },
+      "predictions": [
+        {
+          "pair_id": "r-backend__jd-backend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-backend",
+          "relevance": 3,
+          "prediction": 0.584
+        },
+        {
+          "pair_id": "r-frontend__jd-backend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.3745
+        },
+        {
+          "pair_id": "r-ml__jd-backend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-backend",
+          "relevance": 2,
+          "prediction": 0.3849
+        },
+        {
+          "pair_id": "r-analyst__jd-backend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.3109
+        },
+        {
+          "pair_id": "r-career__jd-backend",
+          "resume_id": "r-career",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 0.3735
+        },
+        {
+          "pair_id": "r-nonresume__jd-backend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-backend",
+          "relevance": 0,
+          "prediction": 0.3829
+        },
+        {
+          "pair_id": "r-backend__jd-frontend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.3034
+        },
+        {
+          "pair_id": "r-frontend__jd-frontend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-frontend",
+          "relevance": 3,
+          "prediction": 0.641
+        },
+        {
+          "pair_id": "r-ml__jd-frontend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 0.2134
+        },
+        {
+          "pair_id": "r-analyst__jd-frontend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.2005
+        },
+        {
+          "pair_id": "r-career__jd-frontend",
+          "resume_id": "r-career",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 0.4314
+        },
+        {
+          "pair_id": "r-nonresume__jd-frontend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 0.2619
+        },
+        {
+          "pair_id": "r-backend__jd-ml",
+          "resume_id": "r-backend",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 0.3099
+        },
+        {
+          "pair_id": "r-frontend__jd-ml",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.2567
+        },
+        {
+          "pair_id": "r-ml__jd-ml",
+          "resume_id": "r-ml",
+          "jd_id": "jd-ml",
+          "relevance": 3,
+          "prediction": 0.5305
+        },
+        {
+          "pair_id": "r-analyst__jd-ml",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 0.1926
+        },
+        {
+          "pair_id": "r-career__jd-ml",
+          "resume_id": "r-career",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.3249
+        },
+        {
+          "pair_id": "r-nonresume__jd-ml",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 0.3219
+        }
+      ]
+    },
+    "matcher": {
+      "metrics": {
+        "n_pairs": 18,
+        "n_jds": 3,
+        "ndcg@10": 0.9955,
+        "ndcg@10_ci": [
+          0.9915,
+          1.0
+        ],
+        "mrr@10": 1.0,
+        "recall@10": 1.0,
+        "spearman": 0.8411,
+        "mae": 1.1333,
+        "ece": 0.08,
+        "non_resume_recall": 0.6667,
+        "per_jd": {
+          "jd-backend": {
+            "ndcg@10": 1.0,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-backend",
+                "relevance": 3,
+                "prediction": 7.0
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 2,
+                "prediction": 4.4
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 3.1
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 2.8
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 1,
+                "prediction": 2.4
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 2.2
+              }
+            ]
+          },
+          "jd-frontend": {
+            "ndcg@10": 0.9949,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-frontend",
+                "relevance": 3,
+                "prediction": 7.4
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 1,
+                "prediction": 3.1
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 2.2
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 1.8
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 1.6
+              },
+              {
+                "resume_id": "r-ml",
+                "relevance": 0,
+                "prediction": 1.4
+              }
+            ]
+          },
+          "jd-ml": {
+            "ndcg@10": 0.9915,
+            "mrr@10": 1.0,
+            "recall@10": 1.0,
+            "ranking": [
+              {
+                "resume_id": "r-ml",
+                "relevance": 3,
+                "prediction": 7.1
+              },
+              {
+                "resume_id": "r-backend",
+                "relevance": 1,
+                "prediction": 4.2
+              },
+              {
+                "resume_id": "r-career",
+                "relevance": 0,
+                "prediction": 2.8
+              },
+              {
+                "resume_id": "r-analyst",
+                "relevance": 1,
+                "prediction": 2.3
+              },
+              {
+                "resume_id": "r-nonresume",
+                "relevance": 0,
+                "prediction": 2.0
+              },
+              {
+                "resume_id": "r-frontend",
+                "relevance": 0,
+                "prediction": 1.8
+              }
+            ]
+          }
+        }
+      },
+      "predictions": [
+        {
+          "pair_id": "r-backend__jd-backend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-backend",
+          "relevance": 3,
+          "prediction": 7.0
+        },
+        {
+          "pair_id": "r-frontend__jd-backend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 2.4
+        },
+        {
+          "pair_id": "r-ml__jd-backend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-backend",
+          "relevance": 2,
+          "prediction": 4.4
+        },
+        {
+          "pair_id": "r-analyst__jd-backend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 3.1
+        },
+        {
+          "pair_id": "r-career__jd-backend",
+          "resume_id": "r-career",
+          "jd_id": "jd-backend",
+          "relevance": 1,
+          "prediction": 2.8
+        },
+        {
+          "pair_id": "r-nonresume__jd-backend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-backend",
+          "relevance": 0,
+          "prediction": 2.2
+        },
+        {
+          "pair_id": "r-backend__jd-frontend",
+          "resume_id": "r-backend",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 2.2
+        },
+        {
+          "pair_id": "r-frontend__jd-frontend",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-frontend",
+          "relevance": 3,
+          "prediction": 7.4
+        },
+        {
+          "pair_id": "r-ml__jd-frontend",
+          "resume_id": "r-ml",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 1.4
+        },
+        {
+          "pair_id": "r-analyst__jd-frontend",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 1.6
+        },
+        {
+          "pair_id": "r-career__jd-frontend",
+          "resume_id": "r-career",
+          "jd_id": "jd-frontend",
+          "relevance": 1,
+          "prediction": 3.1
+        },
+        {
+          "pair_id": "r-nonresume__jd-frontend",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-frontend",
+          "relevance": 0,
+          "prediction": 1.8
+        },
+        {
+          "pair_id": "r-backend__jd-ml",
+          "resume_id": "r-backend",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 4.2
+        },
+        {
+          "pair_id": "r-frontend__jd-ml",
+          "resume_id": "r-frontend",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 1.8
+        },
+        {
+          "pair_id": "r-ml__jd-ml",
+          "resume_id": "r-ml",
+          "jd_id": "jd-ml",
+          "relevance": 3,
+          "prediction": 7.1
+        },
+        {
+          "pair_id": "r-analyst__jd-ml",
+          "resume_id": "r-analyst",
+          "jd_id": "jd-ml",
+          "relevance": 1,
+          "prediction": 2.3
+        },
+        {
+          "pair_id": "r-career__jd-ml",
+          "resume_id": "r-career",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 2.8
+        },
+        {
+          "pair_id": "r-nonresume__jd-ml",
+          "resume_id": "r-nonresume",
+          "jd_id": "jd-ml",
+          "relevance": 0,
+          "prediction": 2.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+Senior Software Engineer — Platform
+
+We are hiring a senior engineer to build reliable APIs and internal platforms.
+
+Must have:
+- 5+ years of software engineering experience
+- Strong Python and FastAPI
+- PostgreSQL and database design
+- REST API design and testing
+- Docker and AWS
+
+Nice to have:
+- Kubernetes
+- React or TypeScript
+- Terraform
+- Observability with Prometheus or Grafana

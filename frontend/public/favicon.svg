@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Resume Analysis proof stamp">
+  <rect width="64" height="64" fill="#f5f2ea"/>
+  <rect x="6.5" y="6.5" width="51" height="51" fill="none" stroke="#c9341a" stroke-width="3"/>
+  <rect x="11" y="11" width="42" height="42" fill="none" stroke="#c9341a" stroke-width="1"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="28" font-weight="900" fill="#c9341a">R</text>
+</svg>
