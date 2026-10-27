@@ -144,7 +144,7 @@ Seed-set results (x86 development machine, not production ARM):
 | TF-IDF | 0.993 | 1.000 | 1.000 | 0.899 | 0.312 |
 | Hash embedder | 0.892 | 0.833 | 1.000 | 0.655 | 0.303 |
 | MiniLM only | 0.978 | 1.000 | 1.000 | 0.622 | 0.281 |
-| Production matcher | 0.996 | 1.000 | 1.000 | 0.841 | 0.080 |
+| Production matcher | 0.996 | 1.000 | 1.000 | 0.841 | 0.081 |
 
 The ranking metrics are near ceiling because 18 pairs across 3 job descriptions is an easy set. The useful signals are the **ECE drop from ~0.28 to 0.08** and the ranking gap between the hash fallback and the semantic path. Both need confirmation on the full set.
 
@@ -153,8 +153,8 @@ Latency on the same machine (single request, warm model):
 | Baseline | p50 | p95 |
 | --- | --- | --- |
 | TF-IDF | 0.7 ms | 1.0 ms |
-| MiniLM | 30 ms | 38 ms |
-| Production matcher | 46 ms | 72 ms |
+| MiniLM | 31.2 ms | 43.4 ms |
+| Production matcher | 60.3 ms | 86.6 ms |
 
 Fairness probe: swapping synthetic names or university prestige changes the production matcher score by **0.0**, because the scoring path is PII-redacted. The MiniLM-only baseline moves by up to 0.044, which is why redaction happens before embedding.
 

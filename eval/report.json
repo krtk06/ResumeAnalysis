@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T16:05:31.437107+00:00",
+  "generated_at": "2026-10-27T16:21:59.865480+00:00",
   "dataset": "seed_pairs.jsonl",
   "dataset_kind": "seed-smoke-test",
   "note": "This is a small hand-labelled seed set for harness verification. It is not the final 300-1000 pair benchmark and must not be cited as one.",
@@ -791,8 +791,8 @@
         "mrr@10": 1.0,
         "recall@10": 1.0,
         "spearman": 0.8411,
-        "mae": 1.1333,
-        "ece": 0.08,
+        "mae": 1.1389,
+        "ece": 0.0806,
         "non_resume_recall": 0.6667,
         "per_jd": {
           "jd-backend": {
@@ -803,22 +803,22 @@
               {
                 "resume_id": "r-backend",
                 "relevance": 3,
-                "prediction": 7.0
+                "prediction": 7.2
               },
               {
                 "resume_id": "r-ml",
                 "relevance": 2,
-                "prediction": 4.4
+                "prediction": 4.3
               },
               {
                 "resume_id": "r-analyst",
                 "relevance": 1,
-                "prediction": 3.1
+                "prediction": 3.2
               },
               {
                 "resume_id": "r-career",
                 "relevance": 1,
-                "prediction": 2.8
+                "prediction": 2.9
               },
               {
                 "resume_id": "r-frontend",
@@ -914,7 +914,7 @@
           "resume_id": "r-backend",
           "jd_id": "jd-backend",
           "relevance": 3,
-          "prediction": 7.0
+          "prediction": 7.2
         },
         {
           "pair_id": "r-frontend__jd-backend",
@@ -928,21 +928,21 @@
           "resume_id": "r-ml",
           "jd_id": "jd-backend",
           "relevance": 2,
-          "prediction": 4.4
+          "prediction": 4.3
         },
         {
           "pair_id": "r-analyst__jd-backend",
           "resume_id": "r-analyst",
           "jd_id": "jd-backend",
           "relevance": 1,
-          "prediction": 3.1
+          "prediction": 3.2
         },
         {
           "pair_id": "r-career__jd-backend",
           "resume_id": "r-career",
           "jd_id": "jd-backend",
           "relevance": 1,
-          "prediction": 2.8
+          "prediction": 2.9
         },
         {
           "pair_id": "r-nonresume__jd-backend",
