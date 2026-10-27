@@ -34,7 +34,7 @@ jobs:
 
       - name: Deploy over SSH
         if: steps.config.outputs.enabled == 'true'
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.ORACLE_HOST }}
           username: ${{ secrets.ORACLE_USER }}
