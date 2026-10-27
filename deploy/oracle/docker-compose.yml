@@ -1,0 +1,48 @@
+services:
+  api:
+    build:
+      context: ../../backend
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      ENVIRONMENT: production
+      EMBEDDER_BACKEND: fastembed
+      EMBEDDER_CACHE_DIR: /models/fastembed
+      HF_HOME: /models
+      HF_HUB_OFFLINE: "1"
+      TRUST_PROXY_HEADERS: "true"
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/api/health/ready"]
+      interval: 30s
+      timeout: 5s
+      start_period: 45s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  caddy:
+    image: caddy:2.8-alpine
+    environment:
+      API_DOMAIN: ${API_DOMAIN}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:

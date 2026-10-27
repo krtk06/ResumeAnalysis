@@ -1,56 +1,45 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const PROCESSING_STAGES = [
-  { text: 'Parsing document', duration: 800 },
-  { text: 'Extracting entities', duration: 1000 },
-  { text: 'Analyzing skills', duration: 1200 },
-  { text: 'Measuring semantic similarity', duration: 1400 },
-  { text: 'Setting the verdict', duration: 600 }
+  { text: 'Parsing document', until: 1200 },
+  { text: 'Extracting entities', until: 2600 },
+  { text: 'Reading evidence', until: 4600 },
+  { text: 'Measuring semantic similarity', until: 7000 },
+  { text: 'Setting the verdict', until: 12000 },
 ]
 
-function ProcessingState() {
-  const [currentStage, setCurrentStage] = useState(0)
-  const [progress, setProgress] = useState(0)
+const TOTAL_MS = PROCESSING_STAGES[PROCESSING_STAGES.length - 1].until
+
+function ProcessingState({ startedAt }) {
+  const [elapsed, setElapsed] = useState(() =>
+    startedAt ? Math.max(0, Date.now() - startedAt) : 0
+  )
 
   useEffect(() => {
-    let stageIndex = 0
-    const startTime = Date.now()
-
+    const start = startedAt || Date.now()
     const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime
-      const totalDuration = PROCESSING_STAGES.reduce((sum, s) => sum + s.duration, 0)
-      const newProgress = Math.min((elapsed / totalDuration) * 100, 100)
-      setProgress(newProgress)
-
-      let accumulated = 0
-      for (let i = 0; i < PROCESSING_STAGES.length; i++) {
-        if (elapsed < accumulated + PROCESSING_STAGES[i].duration) {
-          stageIndex = i
-          break
-        }
-        accumulated += PROCESSING_STAGES[i].duration
-      }
-
-      setCurrentStage(stageIndex)
-
-      if (newProgress >= 100) {
-        clearInterval(interval)
-      }
+      setElapsed(Math.max(0, Date.now() - start))
     }, 100)
-
     return () => clearInterval(interval)
-  }, [])
+  }, [startedAt])
+
+  const progress = Math.min((elapsed / TOTAL_MS) * 100, 92)
+  const currentStage = PROCESSING_STAGES.findIndex((stage) => elapsed < stage.until)
+  const activeStage = currentStage === -1 ? PROCESSING_STAGES.length - 1 : currentStage
 
   return (
-    <div className="pt-10">
-      <h2 className="mb-6 border-b border-ink pb-3 text-xl font-extrabold uppercase tracking-normal [font-stretch:80%]">
+    <div className="pt-10" aria-live="polite">
+      <h2 className="mb-2 border-b border-ink pb-3 text-xl font-extrabold uppercase tracking-normal [font-stretch:80%]">
         On press
       </h2>
+      <p className="mb-5 font-spec text-[10px] uppercase tracking-[0.14em] text-ink-faint">
+        The sheet stays at 92% until the verdict returns.
+      </p>
 
       <ol className="border-t border-rule">
         {PROCESSING_STAGES.map((stage, index) => {
-          const done = index < currentStage || progress >= 100
-          const active = index === currentStage && progress < 100
+          const done = index < activeStage || elapsed >= TOTAL_MS
+          const active = index === activeStage && elapsed < TOTAL_MS
 
           return (
             <li
@@ -83,7 +72,14 @@ function ProcessingState() {
       </ol>
 
       <div className="mt-8">
-        <div className="h-[3px] w-full bg-rule">
+        <div
+          className="h-[3px] w-full bg-rule"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress)}
+          aria-label="Analysis progress"
+        >
           <div
             className="h-full bg-proof transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}

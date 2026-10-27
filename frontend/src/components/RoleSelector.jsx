@@ -13,23 +13,23 @@ const PREDEFINED_ROLES = [
   'Data Analyst'
 ]
 
-function RoleSelector({ value, onChange }) {
+function RoleSelector({ value, onChange, roles = PREDEFINED_ROLES }) {
   const [isCustom, setIsCustom] = useState(false)
   const [customValue, setCustomValue] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const containerRef = useRef(null)
   const menuRef = useRef(null)
-  const options = [...PREDEFINED_ROLES, 'Custom role…']
-  const selectedIndex = isCustom ? options.length - 1 : PREDEFINED_ROLES.indexOf(value)
+  const options = [...roles, 'Custom role…']
+  const selectedIndex = isCustom ? options.length - 1 : roles.indexOf(value)
   const selectedLabel = isCustom ? (customValue || 'Custom role…') : (value || 'Select a role')
 
   useEffect(() => {
-    if (value && !PREDEFINED_ROLES.includes(value)) {
+    if (value && !roles.includes(value)) {
       setIsCustom(true)
       setCustomValue(value)
     }
-  }, [value])
+  }, [value, roles])
 
   useEffect(() => {
     if (!isOpen) return undefined
@@ -54,12 +54,12 @@ function RoleSelector({ value, onChange }) {
   }
 
   const chooseRole = (index) => {
-    if (index === PREDEFINED_ROLES.length) {
+    if (index === roles.length) {
       setIsCustom(true)
       onChange(customValue)
     } else {
       setIsCustom(false)
-      onChange(PREDEFINED_ROLES[index])
+      onChange(roles[index])
     }
     setIsOpen(false)
   }

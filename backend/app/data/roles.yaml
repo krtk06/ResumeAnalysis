@@ -1,0 +1,173 @@
+roles:
+  - name: Software Engineer
+    description: >-
+      Software engineer designs, develops, tests and maintains scalable software
+      applications using languages like Python, Java, JavaScript or Go. Builds
+      REST APIs, works with SQL and NoSQL databases, writes unit and integration
+      tests, follows system design principles, participates in code reviews and
+      agile sprints, and ships reliable production code.
+    requirements:
+      - {id: se-programming, text: "Strong programming in Python, Java, JavaScript, or Go", weight: 3, must_have: true, accepts: [Python, Java, JavaScript, Go]}
+      - {id: se-apis, text: "Designing and building APIs", weight: 3, must_have: true, accepts: [REST APIs, GraphQL, gRPC]}
+      - {id: se-db, text: "Working with relational or NoSQL databases", weight: 2, must_have: true, accepts: [SQL, PostgreSQL, MySQL, MongoDB, Redis]}
+      - {id: se-testing, text: "Automated testing", weight: 2, must_have: false, accepts: [Unit Testing, Integration Testing, Test Automation]}
+      - {id: se-git, text: "Version control and code review", weight: 1, must_have: false, accepts: [Git, Code Review]}
+      - {id: se-system, text: "System design and scalability", weight: 2, must_have: false, accepts: [System Design, Microservices]}
+      - {id: se-cloud, text: "Cloud or containerized deployment", weight: 2, must_have: false, accepts: [AWS, GCP, Azure, Docker, Kubernetes]}
+      - {id: se-agile, text: "Agile delivery", weight: 1, must_have: false, accepts: [Agile, Scrum]}
+      - {id: se-debug, text: "Debugging and problem solving", weight: 1, must_have: false, accepts: [Problem Solving]}
+
+  - name: Frontend Developer
+    description: >-
+      Frontend developer builds responsive, accessible user interfaces with HTML,
+      CSS, JavaScript and TypeScript using React, Next.js, Angular or Vue.
+      Implements state management, performance optimization, accessibility,
+      cross-browser compatibility, and design systems. Collaborates with UX
+      designers and backend engineers to ship pixel-perfect web experiences.
+    requirements:
+      - {id: fe-framework, text: "Production experience with React, Next.js, Angular, or Vue", weight: 3, must_have: true, accepts: [React, Next.js, Angular, Vue]}
+      - {id: fe-js, text: "Strong JavaScript and TypeScript", weight: 3, must_have: true, accepts: [JavaScript, TypeScript]}
+      - {id: fe-htmlcss, text: "Semantic HTML and modern CSS", weight: 2, must_have: true, accepts: [HTML, CSS, Tailwind CSS]}
+      - {id: fe-responsive, text: "Responsive design", weight: 2, must_have: false, accepts: [Responsive Design]}
+      - {id: fe-a11y, text: "Web accessibility", weight: 2, must_have: false, accepts: [Web Accessibility]}
+      - {id: fe-state, text: "State management", weight: 1, must_have: false, accepts: [Redux, Zustand]}
+      - {id: fe-perf, text: "Frontend performance optimization", weight: 2, must_have: false, accepts: [Performance Optimization]}
+      - {id: fe-testing, text: "Frontend testing", weight: 1, must_have: false, accepts: [Jest, Playwright, Cypress, Unit Testing]}
+      - {id: fe-design, text: "Design systems or design collaboration", weight: 1, must_have: false, accepts: [Design Systems, Figma]}
+      - {id: fe-git, text: "Version control", weight: 1, must_have: false, accepts: [Git]}
+
+  - name: Backend Developer
+    description: >-
+      Backend developer builds secure, scalable server-side systems with Python,
+      Java, Node.js or Go using frameworks like FastAPI, Spring or Express.
+      Designs REST and GraphQL APIs, data models and database schemas with SQL,
+      PostgreSQL, MongoDB and Redis. Handles authentication, caching, message
+      queues, and cloud deployment on AWS or GCP.
+    requirements:
+      - {id: be-language, text: "Backend programming in Python, Java, Node.js, or Go", weight: 3, must_have: true, accepts: [Python, Java, Node.js, Go]}
+      - {id: be-framework, text: "Backend framework experience", weight: 3, must_have: true, accepts: [FastAPI, Django, Flask, Spring, Express, NestJS]}
+      - {id: be-api, text: "REST or GraphQL API design", weight: 3, must_have: true, accepts: [REST APIs, GraphQL, gRPC]}
+      - {id: be-db, text: "SQL and database design", weight: 3, must_have: true, accepts: [SQL, PostgreSQL, MySQL, Database Design]}
+      - {id: be-cache, text: "Caching and performance", weight: 2, must_have: false, accepts: [Caching, Redis, Performance Optimization]}
+      - {id: be-auth, text: "Authentication and security", weight: 2, must_have: false, accepts: [Authentication, Security Best Practices, IAM]}
+      - {id: be-queues, text: "Message queues or async processing", weight: 2, must_have: false, accepts: [Message Queues, Kafka]}
+      - {id: be-cloud, text: "Cloud and container deployment", weight: 2, must_have: false, accepts: [AWS, GCP, Azure, Docker, Kubernetes]}
+      - {id: be-testing, text: "Backend testing", weight: 1, must_have: false, accepts: [Unit Testing, Integration Testing, PyTest]}
+      - {id: be-observability, text: "Monitoring and observability", weight: 1, must_have: false, accepts: [Observability, Prometheus, Grafana]}
+
+  - name: Full Stack Developer
+    description: >-
+      Full stack developer ships end-to-end features across frontend and backend
+      using React, Next.js, Node.js, Python and SQL. Builds REST APIs, integrates
+      databases, implements authentication, manages deployment with Docker and
+      CI/CD, and owns features from UI to database and infrastructure.
+    requirements:
+      - {id: fs-frontend, text: "Frontend framework experience", weight: 3, must_have: true, accepts: [React, Next.js, Angular, Vue]}
+      - {id: fs-backend, text: "Backend language and framework", weight: 3, must_have: true, accepts: [Python, Node.js, Java, Go, FastAPI, Express, Django]}
+      - {id: fs-api, text: "API design and integration", weight: 3, must_have: true, accepts: [REST APIs, GraphQL]}
+      - {id: fs-db, text: "Database modeling and queries", weight: 2, must_have: true, accepts: [SQL, PostgreSQL, MySQL, MongoDB]}
+      - {id: fs-auth, text: "Authentication", weight: 1, must_have: false, accepts: [Authentication]}
+      - {id: fs-deploy, text: "Deployment and CI/CD", weight: 2, must_have: false, accepts: [Docker, CI/CD, GitHub Actions, AWS, GCP]}
+      - {id: fs-testing, text: "Automated testing", weight: 1, must_have: false, accepts: [Unit Testing, Integration Testing, Test Automation]}
+      - {id: fs-js, text: "JavaScript and TypeScript", weight: 2, must_have: false, accepts: [JavaScript, TypeScript]}
+      - {id: fs-git, text: "Version control and collaboration", weight: 1, must_have: false, accepts: [Git, Code Review]}
+
+  - name: Data Scientist
+    description: >-
+      Data scientist extracts insights from structured and unstructured data
+      using Python, SQL, pandas, NumPy and statistical modeling. Builds machine
+      learning models, performs feature engineering and data visualization, runs
+      experiments and communicates findings to drive business decisions.
+    requirements:
+      - {id: ds-python, text: "Python for data analysis", weight: 3, must_have: true, accepts: [Python]}
+      - {id: ds-sql, text: "SQL and data extraction", weight: 3, must_have: true, accepts: [SQL, PostgreSQL, MySQL, BigQuery, Snowflake]}
+      - {id: ds-ml, text: "Machine learning modeling", weight: 3, must_have: true, accepts: [Machine Learning, scikit-learn, PyTorch, TensorFlow]}
+      - {id: ds-stats, text: "Statistics and experimentation", weight: 3, must_have: true, accepts: [Statistics, A/B Testing]}
+      - {id: ds-pandas, text: "pandas and NumPy", weight: 2, must_have: false, accepts: [Pandas, NumPy]}
+      - {id: ds-viz, text: "Data visualization", weight: 2, must_have: false, accepts: [Data Visualization, Tableau, Power BI, Matplotlib, Seaborn]}
+      - {id: ds-features, text: "Feature engineering", weight: 2, must_have: false, accepts: [Feature Engineering]}
+      - {id: ds-communication, text: "Communicating findings to stakeholders", weight: 2, must_have: false, accepts: [Communication, Stakeholder Management]}
+      - {id: ds-nlp, text: "NLP or unstructured data", weight: 1, must_have: false, accepts: [NLP, LLMs, Transformers]}
+
+  - name: Machine Learning Engineer
+    description: >-
+      Machine learning engineer builds, trains and deploys ML and deep learning
+      models with Python, TensorFlow, PyTorch and scikit-learn. Handles data
+      pipelines, model optimization, MLOps, experiment tracking, A/B testing and
+      scalable inference services in production.
+    requirements:
+      - {id: mle-python, text: "Strong Python engineering", weight: 3, must_have: true, accepts: [Python]}
+      - {id: mle-ml, text: "Machine learning and deep learning", weight: 3, must_have: true, accepts: [Machine Learning, Deep Learning]}
+      - {id: mle-framework, text: "PyTorch or TensorFlow", weight: 3, must_have: true, accepts: [PyTorch, TensorFlow]}
+      - {id: mle-deploy, text: "Model deployment and serving", weight: 3, must_have: true, accepts: [MLOps, Docker, Kubernetes, FastAPI]}
+      - {id: mle-pipelines, text: "Data pipelines", weight: 2, must_have: false, accepts: [Data Engineering, Airflow, Spark, Kafka]}
+      - {id: mle-cloud, text: "Cloud ML infrastructure", weight: 2, must_have: false, accepts: [AWS, GCP, Azure]}
+      - {id: mle-eval, text: "Model evaluation and experimentation", weight: 2, must_have: false, accepts: [A/B Testing, Statistics, Feature Engineering]}
+      - {id: mle-llm, text: "NLP, LLMs, or transformers", weight: 2, must_have: false, accepts: [NLP, LLMs, Transformers]}
+      - {id: mle-testing, text: "Testing and code quality", weight: 1, must_have: false, accepts: [Unit Testing, PyTest, Code Review]}
+
+  - name: DevOps Engineer
+    description: >-
+      DevOps engineer automates infrastructure and delivery with CI/CD, Docker,
+      Kubernetes, Terraform, Jenkins and GitHub Actions. Manages AWS, GCP or
+      Azure, implements monitoring, logging, alerting and incident response, and
+      ensures high availability and security of production systems.
+    requirements:
+      - {id: do-linux, text: "Linux and scripting", weight: 3, must_have: true, accepts: [Linux, Bash, Python]}
+      - {id: do-containers, text: "Docker and Kubernetes", weight: 3, must_have: true, accepts: [Docker, Kubernetes]}
+      - {id: do-cloud, text: "Cloud platform experience", weight: 3, must_have: true, accepts: [AWS, GCP, Azure]}
+      - {id: do-iac, text: "Infrastructure as code", weight: 3, must_have: true, accepts: [Terraform, Ansible, CloudFormation]}
+      - {id: do-cicd, text: "CI/CD automation", weight: 3, must_have: true, accepts: [CI/CD, Jenkins, GitHub Actions]}
+      - {id: do-monitoring, text: "Monitoring, logging, and alerting", weight: 2, must_have: false, accepts: [Observability, Prometheus, Grafana]}
+      - {id: do-incident, text: "Incident response and reliability", weight: 2, must_have: false, accepts: [Incident Response, System Design]}
+      - {id: do-security, text: "Security and access management", weight: 2, must_have: false, accepts: [Security Best Practices, IAM, Encryption]}
+      - {id: do-performance, text: "Performance and cost optimization", weight: 1, must_have: false, accepts: [Performance Optimization]}
+
+  - name: Product Manager
+    description: >-
+      Product manager owns product strategy, roadmaps and prioritization.
+      Defines requirements, runs user research, analyzes metrics, collaborates
+      with engineering and design through agile delivery, and drives product
+      outcomes with stakeholders.
+    requirements:
+      - {id: pm-strategy, text: "Product strategy and vision", weight: 3, must_have: true, accepts: [Product Strategy]}
+      - {id: pm-roadmap, text: "Roadmap and prioritization", weight: 3, must_have: true, accepts: [Roadmapping]}
+      - {id: pm-research, text: "User research and discovery", weight: 3, must_have: true, accepts: [User Research]}
+      - {id: pm-metrics, text: "Product metrics and analytics", weight: 3, must_have: true, accepts: [Product Analytics, Business Metrics, A/B Testing]}
+      - {id: pm-stakeholders, text: "Stakeholder management", weight: 2, must_have: false, accepts: [Stakeholder Management, Communication]}
+      - {id: pm-agile, text: "Agile delivery", weight: 2, must_have: false, accepts: [Agile, Scrum, Jira]}
+      - {id: pm-technical, text: "Technical fluency with engineering", weight: 1, must_have: false, accepts: [SQL, REST APIs, System Design]}
+      - {id: pm-communication, text: "Written and verbal communication", weight: 2, must_have: false, accepts: [Communication, Documentation]}
+
+  - name: UI/UX Designer
+    description: >-
+      UI/UX designer researches users, creates journey maps, wireframes,
+      high-fidelity prototypes and design systems in Figma, Sketch or Adobe XD.
+      Focuses on usability, accessibility, interaction design and user testing to
+      deliver intuitive digital experiences.
+    requirements:
+      - {id: ux-tools, text: "Figma, Sketch, or Adobe XD", weight: 3, must_have: true, accepts: [Figma, Sketch, Adobe XD]}
+      - {id: ux-research, text: "User research and discovery", weight: 3, must_have: true, accepts: [User Research]}
+      - {id: ux-wireframe, text: "Wireframing and prototyping", weight: 3, must_have: true, accepts: [Wireframing, Prototyping]}
+      - {id: ux-designsystem, text: "Design systems", weight: 2, must_have: false, accepts: [Design Systems]}
+      - {id: ux-testing, text: "Usability testing", weight: 2, must_have: false, accepts: [User Testing]}
+      - {id: ux-accessibility, text: "Accessibility", weight: 2, must_have: false, accepts: [Web Accessibility]}
+      - {id: ux-interaction, text: "Interaction and visual design", weight: 2, must_have: false, accepts: [Interaction Design, UI Design]}
+      - {id: ux-collaboration, text: "Cross-functional collaboration", weight: 1, must_have: false, accepts: [Cross-functional Collaboration, Communication]}
+
+  - name: Data Analyst
+    description: >-
+      Data analyst queries and models data with SQL, Python, Excel, Tableau and
+      Power BI. Builds dashboards and reports, performs data cleaning and
+      visualization, and translates analysis into business insights and
+      recommendations.
+    requirements:
+      - {id: da-sql, text: "Advanced SQL", weight: 3, must_have: true, accepts: [SQL, PostgreSQL, MySQL, BigQuery, Snowflake]}
+      - {id: da-excel, text: "Excel or spreadsheets", weight: 2, must_have: true, accepts: [Excel]}
+      - {id: da-bi, text: "Tableau, Power BI, or similar BI tool", weight: 3, must_have: true, accepts: [Tableau, Power BI]}
+      - {id: da-analysis, text: "Data analysis and cleaning", weight: 3, must_have: true, accepts: [Data Analysis, Data Visualization]}
+      - {id: da-reporting, text: "Reporting and dashboards", weight: 2, must_have: false, accepts: [Reporting, Data Visualization]}
+      - {id: da-stats, text: "Statistics", weight: 2, must_have: false, accepts: [Statistics]}
+      - {id: da-python, text: "Python or pandas for analysis", weight: 2, must_have: false, accepts: [Python, Pandas, NumPy]}
+      - {id: da-metrics, text: "Business metrics and insights", weight: 2, must_have: false, accepts: [Business Metrics, Communication]}
+      - {id: da-communication, text: "Communicating insights", weight: 1, must_have: false, accepts: [Communication, Stakeholder Management]}

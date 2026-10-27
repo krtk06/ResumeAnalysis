@@ -1,0 +1,488 @@
+# Canonical skill taxonomy.
+# Aliases are matched case-insensitively with word boundaries. Keep aliases
+# specific: generic words such as "go", "r", or "api" create false positives.
+skills:
+  # Languages
+  - canonical: Python
+    family: language
+    aliases: [python]
+  - canonical: Java
+    family: language
+    aliases: [java]
+  - canonical: JavaScript
+    family: language
+    aliases: [javascript, js, ecmascript]
+  - canonical: TypeScript
+    family: language
+    aliases: [typescript, ts]
+  - canonical: C++
+    family: language
+    aliases: [c++, cpp, c plus plus]
+  - canonical: C#
+    family: language
+    aliases: [c#, csharp, c sharp]
+  - canonical: Go
+    family: language
+    aliases: [golang, go lang]
+  - canonical: Rust
+    family: language
+    aliases: [rust]
+  - canonical: Ruby
+    family: language
+    aliases: [ruby]
+  - canonical: PHP
+    family: language
+    aliases: [php]
+  - canonical: Kotlin
+    family: language
+    aliases: [kotlin]
+  - canonical: Swift
+    family: language
+    aliases: [swift]
+  - canonical: Scala
+    family: language
+    aliases: [scala]
+  - canonical: R
+    family: language
+    aliases: [r programming, rstats, r language]
+  - canonical: MATLAB
+    family: language
+    aliases: [matlab]
+  - canonical: SQL
+    family: sql
+    aliases: [sql]
+  - canonical: Bash
+    family: shell
+    aliases: [bash, shell scripting]
+  - canonical: PowerShell
+    family: shell
+    aliases: [powershell]
+
+  # Frontend
+  - canonical: React
+    family: react
+    aliases: [react, react.js, reactjs]
+  - canonical: Next.js
+    family: react
+    aliases: [next.js, nextjs, next js]
+  - canonical: React Native
+    family: react
+    aliases: [react native]
+  - canonical: Angular
+    family: angular
+    aliases: [angular, angularjs]
+  - canonical: Vue
+    family: vue
+    aliases: [vue, vue.js, vuejs]
+  - canonical: Svelte
+    family: frontend
+    aliases: [svelte, sveltekit]
+  - canonical: HTML
+    family: frontend
+    aliases: [html, html5]
+  - canonical: CSS
+    family: frontend
+    aliases: [css, css3]
+  - canonical: Tailwind CSS
+    family: frontend
+    aliases: [tailwind, tailwind css, tailwindcss]
+  - canonical: Redux
+    family: frontend
+    aliases: [redux, redux toolkit]
+  - canonical: Zustand
+    family: frontend
+    aliases: [zustand]
+  - canonical: Responsive Design
+    family: frontend
+    aliases: [responsive design, responsive web]
+  - canonical: Web Accessibility
+    family: frontend
+    aliases: [accessibility, a11y, wcag]
+  - canonical: Webpack
+    family: frontend
+    aliases: [webpack]
+  - canonical: Vite
+    family: frontend
+    aliases: [vite]
+  - canonical: Flutter
+    family: mobile
+    aliases: [flutter]
+  - canonical: Android
+    family: mobile
+    aliases: [android]
+  - canonical: iOS
+    family: mobile
+    aliases: [ios, ios development]
+
+  # Backend / APIs
+  - canonical: Node.js
+    family: node
+    aliases: [node.js, nodejs, node js]
+  - canonical: Express
+    family: node
+    aliases: [express, express.js, expressjs]
+  - canonical: FastAPI
+    family: python-web
+    aliases: [fastapi, fast api]
+  - canonical: Django
+    family: python-web
+    aliases: [django]
+  - canonical: Flask
+    family: python-web
+    aliases: [flask]
+  - canonical: Spring
+    family: java-web
+    aliases: [spring boot, spring framework, spring mvc]
+  - canonical: NestJS
+    family: node
+    aliases: [nestjs, nest.js]
+  - canonical: GraphQL
+    family: api
+    aliases: [graphql]
+  - canonical: REST APIs
+    family: api
+    aliases: [rest api, rest apis, restful, restful api, api design]
+  - canonical: gRPC
+    family: api
+    aliases: [grpc]
+  - canonical: Microservices
+    family: architecture
+    aliases: [microservices, micro services]
+  - canonical: Authentication
+    family: security
+    aliases: [authentication, oauth, oauth2, jwt, single sign-on, sso]
+  - canonical: Caching
+    family: backend
+    aliases: [caching, cache, memcached]
+  - canonical: Message Queues
+    family: backend
+    aliases: [message queue, message queues, rabbitmq, sqs]
+  - canonical: WebSockets
+    family: backend
+    aliases: [websocket, websockets, socket.io]
+  - canonical: System Design
+    family: architecture
+    aliases: [system design, distributed systems, scalability]
+
+  # Databases
+  - canonical: PostgreSQL
+    family: sql
+    aliases: [postgresql, postgres, postgre sql]
+  - canonical: MySQL
+    family: sql
+    aliases: [mysql]
+  - canonical: SQLite
+    family: sql
+    aliases: [sqlite]
+  - canonical: MongoDB
+    family: nosql
+    aliases: [mongodb, mongo db]
+  - canonical: Redis
+    family: nosql
+    aliases: [redis]
+  - canonical: DynamoDB
+    family: nosql
+    aliases: [dynamodb, dynamo db]
+  - canonical: Elasticsearch
+    family: search
+    aliases: [elasticsearch, elastic search, opensearch]
+  - canonical: Cassandra
+    family: nosql
+    aliases: [cassandra]
+  - canonical: Snowflake
+    family: warehouse
+    aliases: [snowflake]
+  - canonical: BigQuery
+    family: warehouse
+    aliases: [bigquery, big query]
+  - canonical: Database Design
+    family: database
+    aliases: [database design, data modeling, schema design, database schema]
+
+  # Cloud / DevOps
+  - canonical: AWS
+    family: cloud
+    aliases: [aws, amazon web services]
+  - canonical: Azure
+    family: cloud
+    aliases: [azure, microsoft azure]
+  - canonical: GCP
+    family: cloud
+    aliases: [gcp, google cloud, google cloud platform]
+  - canonical: Docker
+    family: devops
+    aliases: [docker, containerization, containers]
+  - canonical: Kubernetes
+    family: devops
+    aliases: [kubernetes, k8s]
+  - canonical: Terraform
+    family: devops
+    aliases: [terraform, infrastructure as code, iac]
+  - canonical: Ansible
+    family: devops
+    aliases: [ansible]
+  - canonical: Jenkins
+    family: devops
+    aliases: [jenkins]
+  - canonical: GitHub Actions
+    family: devops
+    aliases: [github actions, gitlab ci, circleci]
+  - canonical: CI/CD
+    family: devops
+    aliases: [ci/cd, cicd, continuous integration, continuous delivery, continuous deployment]
+  - canonical: Linux
+    family: os
+    aliases: [linux, unix]
+  - canonical: Nginx
+    family: infrastructure
+    aliases: [nginx]
+  - canonical: Prometheus
+    family: observability
+    aliases: [prometheus]
+  - canonical: Grafana
+    family: observability
+    aliases: [grafana]
+  - canonical: Observability
+    family: observability
+    aliases: [observability, monitoring, logging, alerting, datadog, new relic]
+  - canonical: Serverless
+    family: cloud
+    aliases: [serverless, lambda, cloud functions]
+  - canonical: CloudFormation
+    family: cloud
+    aliases: [cloudformation, cloud formation]
+  - canonical: Incident Response
+    family: devops
+    aliases: [incident response, on-call, on call, postmortem]
+
+  # ML / Data
+  - canonical: Machine Learning
+    family: ml
+    aliases: [machine learning, ml]
+  - canonical: Deep Learning
+    family: ml
+    aliases: [deep learning, neural networks, neural network]
+  - canonical: TensorFlow
+    family: ml-framework
+    aliases: [tensorflow, tensor flow, tf]
+  - canonical: PyTorch
+    family: ml-framework
+    aliases: [pytorch, py torch, torch]
+  - canonical: Keras
+    family: ml-framework
+    aliases: [keras]
+  - canonical: scikit-learn
+    family: ml-framework
+    aliases: [scikit-learn, scikit learn, sklearn]
+  - canonical: NLP
+    family: ml
+    aliases: [nlp, natural language processing]
+  - canonical: Computer Vision
+    family: ml
+    aliases: [computer vision, opencv]
+  - canonical: LLMs
+    family: ml
+    aliases: [llm, llms, large language model, large language models]
+  - canonical: Transformers
+    family: ml
+    aliases: [transformers, hugging face, huggingface]
+  - canonical: MLOps
+    family: ml
+    aliases: [mlops, ml ops, model deployment, model serving]
+  - canonical: Feature Engineering
+    family: data
+    aliases: [feature engineering, feature selection]
+  - canonical: Statistics
+    family: data
+    aliases: [statistics, statistical modeling, statistical analysis]
+  - canonical: A/B Testing
+    family: data
+    aliases: [a/b testing, ab testing, experimentation, experiment design]
+  - canonical: Pandas
+    family: data
+    aliases: [pandas]
+  - canonical: NumPy
+    family: data
+    aliases: [numpy]
+  - canonical: Matplotlib
+    family: data
+    aliases: [matplotlib]
+  - canonical: Seaborn
+    family: data
+    aliases: [seaborn]
+  - canonical: Tableau
+    family: bi
+    aliases: [tableau]
+  - canonical: Power BI
+    family: bi
+    aliases: [power bi, powerbi]
+  - canonical: Excel
+    family: bi
+    aliases: [excel, microsoft excel]
+  - canonical: Data Analysis
+    family: data
+    aliases: [data analysis, data analytics, exploratory data analysis, eda]
+  - canonical: Data Science
+    family: data
+    aliases: [data science]
+  - canonical: Data Engineering
+    family: data
+    aliases: [data engineering, data pipelines, data pipeline]
+  - canonical: ETL
+    family: data
+    aliases: [etl, elt]
+  - canonical: Airflow
+    family: data
+    aliases: [airflow, apache airflow]
+  - canonical: Spark
+    family: data
+    aliases: [spark, pyspark, apache spark]
+  - canonical: Kafka
+    family: data
+    aliases: [kafka, apache kafka]
+  - canonical: dbt
+    family: data
+    aliases: [dbt, data build tool]
+  - canonical: Data Visualization
+    family: data
+    aliases: [data visualization, data visualisation, dashboarding, dashboards]
+  - canonical: Reporting
+    family: data
+    aliases: [reporting, reports, business intelligence, bi]
+  - canonical: Business Metrics
+    family: product
+    aliases: [business metrics, kpis, north star metric, okrs]
+
+  # Product / Design
+  - canonical: Product Strategy
+    family: product
+    aliases: [product strategy, product vision, product strategy]
+  - canonical: Roadmapping
+    family: product
+    aliases: [roadmap, roadmapping, product roadmap]
+  - canonical: User Research
+    family: product
+    aliases: [user research, customer research, user interviews]
+  - canonical: Stakeholder Management
+    family: product
+    aliases: [stakeholder management, stakeholders, stakeholder]
+  - canonical: Agile
+    family: process
+    aliases: [agile, agile methodology]
+  - canonical: Scrum
+    family: process
+    aliases: [scrum, sprint planning, sprints]
+  - canonical: Jira
+    family: process
+    aliases: [jira, confluence]
+  - canonical: Kanban
+    family: process
+    aliases: [kanban]
+  - canonical: Product Analytics
+    family: product
+    aliases: [product analytics, amplitude, mixpanel, google analytics]
+  - canonical: Wireframing
+    family: design
+    aliases: [wireframe, wireframes, wireframing]
+  - canonical: Prototyping
+    family: design
+    aliases: [prototype, prototypes, prototyping]
+  - canonical: Design Systems
+    family: design
+    aliases: [design system, design systems]
+  - canonical: User Testing
+    family: design
+    aliases: [user testing, usability testing, usability]
+  - canonical: Interaction Design
+    family: design
+    aliases: [interaction design, ux design, user experience]
+  - canonical: Figma
+    family: design
+    aliases: [figma]
+  - canonical: Sketch
+    family: design
+    aliases: [sketch]
+  - canonical: Adobe XD
+    family: design
+    aliases: [adobe xd, adobe]
+  - canonical: UI Design
+    family: design
+    aliases: [ui design, user interface, ui/ux, ui ux]
+
+  # Testing / Quality
+  - canonical: Unit Testing
+    family: testing
+    aliases: [unit testing, unit tests, unit test]
+  - canonical: Integration Testing
+    family: testing
+    aliases: [integration testing, integration tests]
+  - canonical: Test Automation
+    family: testing
+    aliases: [test automation, automated testing, test automation]
+  - canonical: Playwright
+    family: testing
+    aliases: [playwright]
+  - canonical: Cypress
+    family: testing
+    aliases: [cypress]
+  - canonical: Selenium
+    family: testing
+    aliases: [selenium]
+  - canonical: Jest
+    family: testing
+    aliases: [jest]
+  - canonical: PyTest
+    family: testing
+    aliases: [pytest, py test]
+
+  # Security
+  - canonical: Security Best Practices
+    family: security
+    aliases: [security best practices, secure coding, application security, appsec]
+  - canonical: OWASP
+    family: security
+    aliases: [owasp]
+  - canonical: Penetration Testing
+    family: security
+    aliases: [penetration testing, pentest, pen testing]
+  - canonical: IAM
+    family: security
+    aliases: [iam, identity and access management]
+  - canonical: Encryption
+    family: security
+    aliases: [encryption, cryptography, tls, ssl]
+  - canonical: Compliance
+    family: security
+    aliases: [compliance, gdpr, dpdp, soc 2, hipaa]
+
+  # Tools / collaboration
+  - canonical: Git
+    family: tool
+    aliases: [git, github, gitlab, version control]
+  - canonical: Code Review
+    family: engineering
+    aliases: [code review, code reviews, peer review]
+  - canonical: Documentation
+    family: engineering
+    aliases: [documentation, technical writing, api documentation]
+  - canonical: Performance Optimization
+    family: engineering
+    aliases: [performance optimization, performance tuning, optimization, profiling]
+  - canonical: Mentoring
+    family: soft
+    aliases: [mentoring, mentorship, mentored]
+  - canonical: Leadership
+    family: soft
+    aliases: [leadership, led a team, team lead, tech lead]
+  - canonical: Cross-functional Collaboration
+    family: soft
+    aliases: [cross-functional, cross functional, collaboration, collaborated]
+  - canonical: Communication
+    family: soft
+    aliases: [communication, presented, presentation]
+  - canonical: Problem Solving
+    family: soft
+    aliases: [problem solving, problem-solving, troubleshooting]
+  - canonical: Ownership
+    family: soft
+    aliases: [ownership, owned, end-to-end ownership]

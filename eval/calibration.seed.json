@@ -1,0 +1,40 @@
+{
+  "version": "isotonic-seed-20261027",
+  "dataset": "seed_pairs.jsonl",
+  "baseline": "minilm",
+  "warning": "Seed smoke-test fit only. Refit on the full labelled validation split before production.",
+  "points": [
+    [
+      1.926,
+      1.2
+    ],
+    [
+      2.619,
+      1.2
+    ],
+    [
+      3.034,
+      1.875
+    ],
+    [
+      3.829,
+      1.875
+    ],
+    [
+      3.849,
+      4.5
+    ],
+    [
+      4.314,
+      4.5
+    ],
+    [
+      5.305,
+      9.0
+    ],
+    [
+      6.41,
+      9.0
+    ]
+  ]
+}

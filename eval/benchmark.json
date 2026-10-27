@@ -1,0 +1,24 @@
+{
+  "n_pairs": 18,
+  "repeats": 3,
+  "baselines": {
+    "tfidf": {
+      "p50_ms": 0.67,
+      "p95_ms": 0.97,
+      "mean_ms": 0.73,
+      "max_ms": 1.37
+    },
+    "minilm": {
+      "p50_ms": 31.21,
+      "p95_ms": 43.43,
+      "mean_ms": 30.8,
+      "max_ms": 82.38
+    },
+    "matcher": {
+      "p50_ms": 60.29,
+      "p95_ms": 86.64,
+      "mean_ms": 59.45,
+      "max_ms": 103.67
+    }
+  }
+}

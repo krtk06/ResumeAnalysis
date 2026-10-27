@@ -15,7 +15,7 @@ function CropMark({ className }) {
   )
 }
 
-function UploadZone({ onFileSelect, selectedFile }) {
+function UploadZone({ onFileSelect, selectedFile, maxSizeMb = 10, onSample }) {
   const [isDragging, setIsDragging] = useState(false)
   const [notice, setNotice] = useState(null)
   const inputRef = useRef(null)
@@ -54,8 +54,10 @@ function UploadZone({ onFileSelect, selectedFile }) {
       return
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      setNotice(`${file.name} is ${(file.size / (1024 * 1024)).toFixed(1)}MB — over the 10MB press limit. Compress or export a lighter copy.`)
+    if (file.size > maxSizeMb * 1024 * 1024) {
+      setNotice(
+        `${file.name} is ${(file.size / (1024 * 1024)).toFixed(1)}MB — over the ${maxSizeMb}MB press limit. Compress or export a lighter copy.`
+      )
       return
     }
 
@@ -70,6 +72,12 @@ function UploadZone({ onFileSelect, selectedFile }) {
     e.stopPropagation()
     setNotice(null)
     onFileSelect(null)
+  }
+
+  const handleSample = (e) => {
+    e.stopPropagation()
+    setNotice(null)
+    onSample?.()
   }
 
   return (
@@ -89,7 +97,7 @@ function UploadZone({ onFileSelect, selectedFile }) {
         }}
         role="button"
         tabIndex={0}
-        aria-label={selectedFile ? `Change file, ${selectedFile.name} selected` : 'Upload resume, PDF or DOCX up to 10 megabytes'}
+        aria-label={selectedFile ? `Change file, ${selectedFile.name} selected` : `Upload resume, PDF or DOCX up to ${maxSizeMb} megabytes`}
         className={`
           upload-surface group relative cursor-pointer overflow-hidden border border-ink transition-all duration-300
           ${isDragging ? 'bg-ink text-stock' : 'bg-transparent text-ink hover:bg-stock-deep'}
@@ -132,7 +140,7 @@ function UploadZone({ onFileSelect, selectedFile }) {
             </button>
           </div>
         ) : (
-          <div className="flex flex-col items-center gap-3 px-6 py-14 text-center">
+          <div className="flex flex-col items-center gap-3 px-6 py-12 text-center">
             <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.25">
               <path strokeLinecap="square" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
@@ -140,11 +148,17 @@ function UploadZone({ onFileSelect, selectedFile }) {
               Drop the resume on the sheet
             </p>
             <p className="font-spec text-xs text-ink-faint">
-              PDF or DOCX · max 10MB · click to browse
+              PDF or DOCX · max {maxSizeMb}MB · click to browse
             </p>
-            <span className="mt-2 font-spec text-[10px] uppercase tracking-[0.14em] text-proof transition-transform duration-300 group-hover:translate-y-0">
-              Drop to add
-            </span>
+            {onSample && (
+              <button
+                type="button"
+                onClick={handleSample}
+                className="mt-2 border border-ink px-3 py-1.5 font-spec text-[10px] uppercase tracking-[0.14em] text-ink transition-colors hover:bg-ink hover:text-stock"
+              >
+                Use sample resume
+              </button>
+            )}
           </div>
         )}
       </div>
