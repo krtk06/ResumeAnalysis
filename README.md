@@ -212,7 +212,7 @@ vercel env add VITE_API_URL production   # https://api.<host>
 vercel --prod
 ```
 
-The build fails loudly if `VITE_API_URL` is missing, still contains a placeholder, or is not HTTPS in production. That replaces the previous silent failure where the deployed bundle called a literal placeholder URL.
+A production build fails loudly if `VITE_API_URL` is missing, still contains a placeholder, or is not HTTPS. That replaces the previous silent failure where the deployed bundle called a literal placeholder URL. Preview builds are allowed to fall back to localhost so pull requests still deploy a UI preview.
 
 ## API
 

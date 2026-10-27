@@ -102,7 +102,14 @@ def create_app(
         )
 
     if settings.trusted_host_list and settings.trusted_host_list != ["*"]:
-        app.add_middleware(TrustedHostMiddleware, allowed_hosts=settings.trusted_host_list)
+        # Container and load-balancer healthchecks connect over loopback with a
+        # 127.0.0.1 Host header. Keep those working while still rejecting
+        # arbitrary external Host headers.
+        allowed_hosts = list(settings.trusted_host_list)
+        for loopback in ("127.0.0.1", "localhost", "[::1]"):
+            if loopback not in allowed_hosts:
+                allowed_hosts.append(loopback)
+        app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
 
     @app.middleware("http")
     async def request_context(request: Request, call_next):

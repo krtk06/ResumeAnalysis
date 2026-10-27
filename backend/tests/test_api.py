@@ -144,6 +144,22 @@ def test_cors_preflight(client):
     assert response.headers.get("access-control-allow-origin") == "http://localhost:5173"
 
 
+def test_trusted_hosts_allow_loopback_healthcheck():
+    settings = Settings(
+        _env_file=None,
+        environment="test",
+        embedder_backend="hash",
+        llm_enabled=False,
+        trusted_hosts="api.example.com",
+        log_level="WARNING",
+    )
+    app = create_app(settings)
+    with TestClient(app, base_url="http://127.0.0.1") as client:
+        assert client.get("/api/health").status_code == 200
+        assert client.get("/api/health", headers={"host": "localhost"}).status_code == 200
+        assert client.get("/api/health", headers={"host": "evil.example.com"}).status_code == 400
+
+
 def test_consent_blocks_llm_and_keeps_local(docx_bytes):
     settings = Settings(
         _env_file=None,

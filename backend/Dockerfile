@@ -25,7 +25,7 @@ COPY app ./app
 # CI can disable this with --build-arg PRELOAD_MODEL=0.
 ARG PRELOAD_MODEL=1
 RUN if [ "$PRELOAD_MODEL" = "1" ]; then \
-      python -c "from fastembed import TextEmbedding; m=TextEmbedding(model_name='sentence-transformers/all-MiniLM-L6-v2', cache_dir='/models/fastembed'); list(m.embed(['warmup']))"; \
+      HF_HUB_OFFLINE=0 python -c "from fastembed import TextEmbedding; m=TextEmbedding(model_name='sentence-transformers/all-MiniLM-L6-v2', cache_dir='/models/fastembed'); list(m.embed(['warmup']))"; \
     fi
 
 RUN mkdir -p /models \
