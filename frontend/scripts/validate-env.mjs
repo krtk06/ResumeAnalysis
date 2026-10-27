@@ -18,7 +18,11 @@ if (!raw) {
 }
 
 if (raw.includes('<') || raw.includes('your-backend')) {
-  fail(`VITE_API_URL still contains a placeholder: ${raw}`)
+  if (isProduction) {
+    fail(`VITE_API_URL still contains a placeholder: ${raw}`)
+  }
+  console.warn(`[build] Preview VITE_API_URL contains a placeholder: ${raw}. The UI will show a configuration error until it is fixed.`)
+  process.exit(0)
 }
 
 try {
