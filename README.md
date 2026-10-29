@@ -46,7 +46,7 @@ The design direction is a print-shop proof sheet: bone stock, ink, one proof-red
 Browser (React + Vite, Vercel)
    │  multipart form: file, target_role, job_description, consent
    ▼
-FastAPI (Oracle Cloud ARM, Docker, Caddy TLS)
+FastAPI (Google Cloud Run, Docker, managed TLS)
    ├── parse_document()        PDF / DOCX → normalised lines
    ├── NLPAnalyzer             taxonomy skills, education, experience months, resume confidence
    ├── RoleMatcher             semantic chunks + weighted coverage → raw score → calibration
@@ -164,43 +164,71 @@ Fairness probe: swapping synthetic names or university prestige changes the prod
 2. A held-out test split fixed before model selection.
 3. NDCG@10, MRR@10, Recall@10, Spearman, MAE, ECE, and subgroup deltas with bootstrap confidence intervals.
 4. A fine-tuned cross-encoder baseline compared against MiniLM and the production matcher.
-5. ONNX export and an ARM latency benchmark on the actual Oracle VM.
+5. ONNX export and a Cloud Run cold-start/latency benchmark on 1 vCPU.
 6. A calibration curve fit on validation data only, then frozen and versioned.
 
 Until then the honest claim is: **the pipeline is production-shaped and measured on a smoke-test set**, not "state of the art".
 
 ## Deployment
 
-### Backend: Oracle Cloud Always Free (ARM Ampere A1)
+### Backend: Google Cloud Run
 
-Target: 4 OCPU / 24 GB Ampere A1, Ubuntu 24.04, Docker Compose, Caddy for automatic TLS.
+The API is a container on Cloud Run: 1 GiB memory / 1 vCPU, scale-to-zero, managed TLS, and Secret Manager for the OpenCode key. The image bakes the ONNX model, so the service runs with `HF_HUB_OFFLINE=1`.
 
-```bash
-# On the VM
-sudo mkdir -p /opt/resumeanalysis
-sudo chown "$USER":"$USER" /opt/resumeanalysis
-git clone https://github.com/krtk06/ResumeAnalysis.git /opt/resumeanalysis
-cd /opt/resumeanalysis
-
-cp deploy/oracle/.env.example deploy/oracle/.env
-chmod 600 deploy/oracle/.env
-$EDITOR deploy/oracle/.env      # API_DOMAIN, CORS_ORIGINS, OPENCODE_API_KEY
-./deploy/oracle/deploy.sh
-```
-
-Open ingress for TCP 80 and 443 in the OCI security list and in `ufw`. Caddy obtains and renews the certificate automatically. With a reserved public IP, `sslip.io` gives a working hostname without owning a domain:
-
-```dotenv
-API_DOMAIN=api.203.0.113.10.sslip.io
-```
-
-Verify:
+One-time bootstrap. You need a billing-enabled GCP project and an account that can enable APIs, create service accounts, and grant IAM roles (Owner or Editor). `gcloud` must be installed and authenticated.
 
 ```bash
-curl -fsS https://api.203.0.113.10.sslip.io/api/health/ready
+gcloud auth login
+gcloud config set project YOUR_PROJECT_ID
+
+cp deploy/cloudrun/.env.example deploy/cloudrun/.env
+$EDITOR deploy/cloudrun/.env        # PROJECT_ID, region, CORS, optional billing account
+
+./deploy/cloudrun/bootstrap.sh
+./deploy/cloudrun/deploy.sh
 ```
 
-A GitHub Actions workflow (`.github/workflows/deploy.yml`) can redeploy over SSH on pushes to `main` when `ORACLE_HOST`, `ORACLE_USER`, and `ORACLE_SSH_KEY` are set as repository secrets.
+`bootstrap.sh` enables the APIs, creates Artifact Registry, deploy and runtime service accounts, the `opencode-api-key` secret, and a GitHub Workload Identity Federation provider. `deploy.sh` builds and pushes the image, deploys a revision, runs readiness/CORS/sample-resume smoke tests, and shifts traffic back to the previous revision if a smoke test fails.
+
+The service is configured with:
+
+| Setting | Value |
+| --- | --- |
+| Memory / CPU | 1 GiB / 1 vCPU |
+| Instances | 0 minimum, 1 maximum |
+| Concurrency | 4 |
+| Request timeout | 90 s |
+| Startup CPU boost | enabled |
+| Authentication | public (unauthenticated) |
+| Startup probe | `/api/health/ready` |
+| Liveness probe | `/api/health` |
+| Secrets | `OPENCODE_API_KEY` from Secret Manager |
+
+`max-instances=1` keeps the in-memory rate limiter and daily LLM budget meaningful. Cloud Run cold starts reset those counters; for strict global limits, move them to Firestore/Redis. With `min-instances=0`, the first request after idle can take roughly 10–20 seconds; the frontend's 60-second timeout handles it. A 1 GiB instance is the recommended size for fastembed; 512 MiB passed a sample test but leaves little headroom for concurrent uploads. `bootstrap.sh` creates a budget alert when `BILLING_ACCOUNT_ID` is provided.
+
+AI review stays off by default. To enable it, add the key to Secret Manager, set `LLM_ENABLED=true` in `deploy/cloudrun/.env`, and redeploy:
+
+```bash
+gcloud secrets versions add opencode-api-key --data-file=/path/to/key
+./deploy/cloudrun/deploy.sh
+```
+
+GitHub Actions deploys on pushes to `main` using Workload Identity Federation; no SSH keys or long-lived service-account keys. Set these repository variables (the bootstrap script prints the exact values):
+
+- `GCP_PROJECT_ID`
+- `GCP_REGION`
+- `GCP_WORKLOAD_IDENTITY_PROVIDER`
+- `GCP_SERVICE_ACCOUNT`
+- `GCP_RUNTIME_SERVICE_ACCOUNT`
+- `CORS_ORIGINS`
+- `CORS_ORIGIN_REGEX`
+- `LLM_ENABLED`
+
+The workflow skips cleanly until those variables exist.
+
+### Alternative: Oracle Cloud Always Free
+
+`deploy/oracle/` remains in the repository for a full VPS deployment with Docker Compose and Caddy. It is not the primary path. It needs an Oracle A1 instance, ingress on TCP 80/443, and the same environment values; Cloud Run removes that operational overhead at the cost of cold starts and per-instance limits.
 
 ### Frontend: Vercel
 
@@ -208,7 +236,7 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) can redeploy over SSH
 
 ```bash
 cd frontend
-vercel env add VITE_API_URL production   # https://api.<host>
+vercel env add VITE_API_URL production   # the Cloud Run service URL
 vercel --prod
 ```
 
@@ -278,7 +306,8 @@ Response highlights:
 - Uploaded bytes and extracted text are never written to disk or logged. Logs contain request ID, source, score, role, format, byte count, and skill count only.
 - Errors return a safe message plus a request ID. Exception text never reaches the client.
 - Per-IP sliding-window rate limiting (10/hour, 50/day by default) and a daily LLM budget guard.
-- CORS is an explicit origin allowlist. `TRUST_PROXY_HEADERS` is only enabled behind Caddy.
+- CORS is an explicit origin allowlist. `TRUST_PROXY_HEADERS` is only enabled behind Cloud Run's proxy.
+- The Cloud Run runtime uses a dedicated service account; `OPENCODE_API_KEY` lives in Secret Manager, not in the image or repository.
 - Security headers on both layers: `nosniff`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options` on Vercel.
 - Prompt injection is mitigated by XML-delimited untrusted input, a system prompt that forbids instruction following, and verbatim verification of every returned evidence quote.
 - Dependencies are pinned in `uv.lock`, exported to hashed `requirements.txt`, scanned by `pip-audit` in CI, and updated by Dependabot.
@@ -295,7 +324,7 @@ ruff format --check app tests
 mypy app
 ```
 
-CI runs the backend suite, lint, type checks, a dependency audit, the frontend build, and a container smoke test against `/api/health/ready`.
+CI runs the backend suite, lint, type checks, a dependency audit, the frontend build, and a container smoke test against `/api/health/ready`. CD deploys to Cloud Run with Workload Identity Federation and runs the same readiness, CORS, and sample-analysis smoke tests before keeping the new revision.
 
 ## Project structure
 
@@ -326,9 +355,11 @@ ResumeAnalysis/
 │   ├── public/                    # favicon, OG image, privacy, sample resume
 │   ├── scripts/validate-env.mjs
 │   └── src/
-├── deploy/oracle/                 # compose, Caddyfile, deploy script
+├── deploy/
+│   ├── cloudrun/                  # bootstrap, deploy, WIF, env template
+│   └── oracle/                    # optional VPS alternative
 ├── eval/                          # metrics, baselines, calibration, benchmark
-└── .github/workflows/             # CI and deploy
+└── .github/workflows/             # CI and Cloud Run deploy
 ```
 
 ## Roadmap
@@ -338,12 +369,12 @@ ResumeAnalysis/
 - [x] Evidence citations and ranked gaps
 - [x] Deterministic taxonomy with word-boundary matching
 - [x] Shared ONNX embedder, app factory, readiness probe
-- [x] Docker, CI, pinned dependencies, Oracle deploy scripts
+- [x] Docker, CI, pinned dependencies, Cloud Run bootstrap and deploy scripts
 - [x] Seed evaluation harness with ranking, calibration, fairness, and latency
 - [ ] Label 300–500 pairs and freeze a held-out split
 - [ ] Fine-tuned cross-encoder baseline
 - [ ] Fit and version a production calibration curve
-- [ ] ARM benchmark and cold-start budget on the Oracle VM
+- [ ] Cloud Run cold-start and 1 vCPU latency benchmark
 - [ ] Persist nothing but aggregate metrics; add an opt-in feedback loop
 
 ## License

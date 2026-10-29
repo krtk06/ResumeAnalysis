@@ -63,13 +63,13 @@
   <body>
     <main>
       <a class="back" href="/">← Back to the proof sheet</a>
-      <p class="meta">Privacy · last updated 27 October 2026</p>
+      <p class="meta">Privacy · last updated 29 October 2026</p>
       <h1>Your resume is not a dataset.</h1>
       <hr class="rule" />
 
       <p>
         Resume Analysis processes a resume to score its fit for a role and to show
-        evidence for that score. The default local path runs on the server in memory.
+        evidence for that score. The API runs in memory on Google Cloud Run.
         No upload is written to disk, and no resume text is included in application logs.
       </p>
 
@@ -79,6 +79,14 @@
         <li>The target role and optional job description you provide.</li>
         <li>Derived skills, education, experience, and scoring signals.</li>
       </ul>
+
+      <h2>Hosting</h2>
+      <p>
+        The API runs on Google Cloud Run in the us-central1 region of the United
+        States. Google Cloud processes requests in memory on our behalf and does not
+        receive a stored copy from this application. Request metadata may appear in
+        Google Cloud logs under Google's terms.
+      </p>
 
       <h2>When AI review is enabled</h2>
       <p>
@@ -100,8 +108,10 @@
       <h2>Retention</h2>
       <p>
         This application does not persist resumes, results, or history. In-memory
-        request state is discarded after the response. OpenCode Go's model retention
-        is described above and is governed by OpenCode's policies.
+        request state is discarded after the response. Google Cloud Run request logs
+        are retained under the project's Cloud Logging policy; resume text is not
+        written to those logs. OpenCode Go's model retention is described above and
+        is governed by OpenCode's policies.
       </p>
 
       <h2>Your choices</h2>
@@ -116,9 +126,11 @@
         This is a portfolio demo, not a hiring decision system. It follows data
         minimisation and purpose limitation: process the minimum text needed for the
         requested analysis, do not store it, and ask for consent before any external
-        transfer. If you deploy it for real candidates, add a lawful basis, a notice,
-        a retention policy, a deletion path, and a cross-border transfer review
-        appropriate to your jurisdiction. This page is not legal advice.
+        transfer. Google Cloud Run (United States) hosts the API, and OpenCode Go
+        handles optional AI review; both are subprocessors. If you deploy it for real
+        candidates, add a lawful basis, a notice, a retention policy, a deletion path,
+        and a cross-border transfer review appropriate to your jurisdiction. This page
+        is not legal advice.
       </p>
 
       <h2>Contact</h2>
