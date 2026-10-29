@@ -31,7 +31,7 @@ jobs:
       CORS_ORIGIN_REGEX: ${{ vars.CORS_ORIGIN_REGEX || 'https://resume-analysis-[a-z0-9-]+\.vercel\.app' }}
       LLM_ENABLED: ${{ vars.LLM_ENABLED || 'false' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check Cloud Run configuration
         id: config
