@@ -32,6 +32,9 @@ jobs:
         run: uv run pytest --cov=app --cov-report=term-missing
       - name: Audit production dependencies
         run: uv run pip-audit -r requirements.txt
+      - name: Shell syntax for deploy scripts
+        working-directory: ${{ github.workspace }}
+        run: bash -n deploy/cloudrun/bootstrap.sh deploy/cloudrun/deploy.sh
 
   frontend:
     runs-on: ubuntu-latest

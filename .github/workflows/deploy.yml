@@ -1,4 +1,4 @@
-name: Deploy API to Oracle
+name: Deploy API to Cloud Run
 
 on:
   workflow_dispatch:
@@ -6,40 +6,57 @@ on:
     branches: [main]
     paths:
       - "backend/**"
-      - "deploy/oracle/**"
+      - "deploy/cloudrun/**"
       - ".github/workflows/deploy.yml"
 
+permissions:
+  contents: read
+  id-token: write
+
 concurrency:
-  group: oracle-production
+  group: cloudrun-production
   cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: production
+    env:
+      PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      REGION: ${{ vars.GCP_REGION || 'us-central1' }}
+      SERVICE_NAME: resume-analysis-api
+      REPO_NAME: resume-analysis
+      RUNTIME_SERVICE_ACCOUNT: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+      CORS_ORIGINS: ${{ vars.CORS_ORIGINS || 'https://resume-analysis-ruddy.vercel.app' }}
+      CORS_ORIGIN_REGEX: ${{ vars.CORS_ORIGIN_REGEX || 'https://resume-analysis-[a-z0-9-]+\.vercel\.app' }}
+      LLM_ENABLED: ${{ vars.LLM_ENABLED || 'false' }}
     steps:
-      - name: Check deployment secrets
+      - uses: actions/checkout@v4
+
+      - name: Check Cloud Run configuration
         id: config
         env:
-          ORACLE_HOST: ${{ secrets.ORACLE_HOST }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY }}
+          WIF_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          DEPLOY_SA: ${{ vars.GCP_SERVICE_ACCOUNT }}
         run: |
-          if [ -n "$ORACLE_HOST" ] && [ -n "$ORACLE_USER" ] && [ -n "$ORACLE_SSH_KEY" ]; then
+          if [ -n "$PROJECT_ID" ] && [ -n "$WIF_PROVIDER" ] && [ -n "$DEPLOY_SA" ]; then
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           else
             echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Oracle deploy secrets are not configured; skipping deployment."
+            echo "::notice::Cloud Run deploy variables are not configured; skipping deployment."
           fi
 
-      - name: Deploy over SSH
+      - name: Authenticate to Google Cloud
         if: steps.config.outputs.enabled == 'true'
-        uses: appleboy/ssh-action@v1.2.0
+        uses: google-github-actions/auth@v2
         with:
-          host: ${{ secrets.ORACLE_HOST }}
-          username: ${{ secrets.ORACLE_USER }}
-          key: ${{ secrets.ORACLE_SSH_KEY }}
-          script_stop: true
-          script: |
-            cd /opt/resumeanalysis
-            ./deploy/oracle/deploy.sh
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+
+      - name: Set up gcloud
+        if: steps.config.outputs.enabled == 'true'
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy
+        if: steps.config.outputs.enabled == 'true'
+        run: ./deploy/cloudrun/deploy.sh
