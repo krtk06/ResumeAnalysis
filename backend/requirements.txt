@@ -979,9 +979,9 @@ pydantic-settings==2.16.1 \
     --hash=sha256:30f5313340da4e8f1b440d1910b92a5bc3ccbb6b4ba70ec2b8395bc921f418f5 \
     --hash=sha256:aff602a1886338c2df3d1e958e2193a8dc33cec75b91f202e83fd98484b4b0da
     # via resume-analysis-api
-pypdf==6.21.3 \
-    --hash=sha256:11e1ca6d6cc8ca322558a3a974078d5ebc0f3a2104b8e673eee25621ee97abd8 \
-    --hash=sha256:c8ca4d9a360dbd5d4b9bb7a8389e2a9ae6a106bee722b496f918040ba2daa17e
+pypdf==6.21.4 \
+    --hash=sha256:33e4fb41ca352810eb4e9838aa0d82d6888a5f8bf682f43e99cce5faa666255c \
+    --hash=sha256:c8817e3f888d47a087872ded69812c1ef30cacb871d6e053e0c00bbaf0bc2163
     # via resume-analysis-api
 python-docx==1.2.0 \
     --hash=sha256:3fd478f3250fbbbfd3b94fe1e985955737c145627498896a8a6bf81f4baf66c7 \
